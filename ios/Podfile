@@ -31,5 +31,26 @@ target 'EcoRangerWildLifeExplorer' do
       :mac_catalyst_enabled => false,
       # :ccache_enabled => true
     )
+
+    fmt_target = installer.pods_project.targets.find { |target| target.name == 'fmt' }
+    if fmt_target
+      fmt_target.build_configurations.each do |config|
+        config.build_settings['CLANG_CXX_LANGUAGE_STANDARD'] = 'c++17'
+      end
+    end
+
+    ['base.h', 'core.h'].each do |header_name|
+      fmt_header = File.join(installer.sandbox.root.to_s, 'fmt', 'include', 'fmt', header_name)
+      next unless File.exist?(fmt_header)
+
+      text = File.read(fmt_header)
+      updated = text
+        .gsub(/(#elif defined\(__cpp_consteval\)\n#\s*define FMT_USE_CONSTEVAL) 1/, '\\1 0')
+        .gsub(/(#elif FMT_GCC_VERSION >= 1002 \|\| FMT_CLANG_VERSION >= 1101\n#\s*define FMT_USE_CONSTEVAL) 1/, '\\1 0')
+      if updated != text
+        File.chmod(0o644, fmt_header)
+        File.write(fmt_header, updated)
+      end
+    end
   end
 end
