@@ -1,4 +1,4 @@
-package com.ecorangerwildlifeexplorer
+package com.ecoranger.wildlife.explorer
 
 import android.app.Application
 import com.facebook.react.PackageList
