@@ -39,7 +39,6 @@ export function AnimalCard({item, onPress}: AnimalCardProps) {
   return (
     <Pressable onPress={onPress} style={({pressed}) => [styles.animalCard, pressed && styles.pressed]}>
       <Image source={item.image} resizeMode="cover" style={styles.animalImage} />
-      <View style={styles.animalShade} />
       <View style={styles.animalBody}>
         <View style={[styles.statusBadge, item.status.includes('Endangered') && styles.redBadge]}>
           <AppText size={10} weight="900" color={item.status.includes('Endangered') ? colors.red : colors.amber} numberOfLines={1}>
@@ -108,14 +107,6 @@ const styles = StyleSheet.create({
   animalImage: {
     width: '100%',
     height: 118,
-  },
-  animalShade: {
-    position: 'absolute',
-    left: 0,
-    right: 0,
-    top: 76,
-    height: 72,
-    backgroundColor: 'rgba(8, 4, 20, 0.45)',
   },
   animalBody: {
     padding: 12,
