@@ -1,4 +1,4 @@
-package com.ecoranger.wildlife.explorer
+package com.ecosafariwildlifeexplorer
 
 import com.facebook.react.ReactActivity
 import com.facebook.react.ReactActivityDelegate
