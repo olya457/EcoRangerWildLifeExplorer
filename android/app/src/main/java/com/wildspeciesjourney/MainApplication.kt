@@ -1,4 +1,4 @@
-package com.ecosafariwildlifeexplorer
+package com.wildspeciesjourney
 
 import android.app.Application
 import com.facebook.react.PackageList
